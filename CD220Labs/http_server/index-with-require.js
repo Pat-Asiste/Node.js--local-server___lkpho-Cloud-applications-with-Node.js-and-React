@@ -1,14 +1,18 @@
- // Import the HTTP module
+// Import the HTTP module
 const http = require('http');
 
 // Import the 'today' module
 const today = require('./today');
 
+const { aestTime, hora } = today.getDate(); // number : 24h-format
+const saludo = hora < 12 ? "Buenos días"
+    : hora < 20 ? "Buenas tardes" : "Buenas noches";
+
 // Define the request listener function
 const requestListener = function (req, res) {
     res.writeHead(200); // Set the status code to 200 (OK)
     // Send the response with the current date from the 'today' module
-    res.end(`Hello, World! The date today is ${today.getDate()}`);
+    res.end(`${saludo}, Señor STARK! La fecha hoy es ${aestTime}`);
 };
 
 // Define the port number
